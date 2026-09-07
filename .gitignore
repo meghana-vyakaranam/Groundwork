@@ -1,0 +1,6 @@
+.env
+venv/
+__pycache__/
+*.pyc
+groundwork.db
+data/strava_export.csv

@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: groundwork
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 1 --threads 4 --timeout 60
+    # SQLite + the food/Strava data files all need to survive deploys and
+    # restarts, which Render's default filesystem does not guarantee — this
+    # disk is mounted at /var/data and DATABASE_PATH/DATA_DIR below point
+    # into it. Without this disk, every deploy silently resets the app.
+    disk:
+      name: groundwork-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: DATABASE_PATH
+        value: /var/data/groundwork.db
+      - key: DATA_DIR
+        value: /var/data
+      # Secrets — set actual values in the Render dashboard, not here.
+      - key: STRAVA_CLIENT_ID
+        sync: false
+      - key: STRAVA_CLIENT_SECRET
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      # Gates the whole app behind HTTP Basic Auth once set — strongly
+      # recommended once this is reachable from the public internet instead
+      # of just home WiFi. See app.py's _require_basic_auth().
+      - key: APP_USERNAME
+        sync: false
+      - key: APP_PASSWORD
+        sync: false

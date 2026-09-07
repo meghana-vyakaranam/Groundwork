@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Strava import preview · Groundwork{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-title">Strava import preview</div>
+
+  {% if not preview.available %}
+    <p style="font-size:13px; color:var(--ink-secondary);">
+      {% if source == 'api' %}
+        Not connected to Strava yet.
+      {% else %}
+        No export file uploaded yet.
+      {% endif %}
+    </p>
+  {% elif preview.rows|length == 0 %}
+    <p style="font-size:13px; color:var(--ink-secondary);">Nothing found to import.</p>
+  {% else %}
+    <div class="health-table-wrap">
+      <table class="health-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Duration</th>
+            <th>Distance</th>
+            <th>Calories</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in preview.rows %}
+          <tr>
+            <td>{{ row.name }}</td>
+            <td>{{ row.type }}</td>
+            <td>{{ row.start_date[:10] }}</td>
+            <td>{{ row.duration_min }} min</td>
+            <td>{{ row.distance_km }} km</td>
+            <td>{{ row.calories_display }}</td>
+            <td>
+              {% if row.is_new %}<span class="chip ok">new</span>{% else %}<span class="chip dup">already imported</span>{% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <form method="POST" action="{{ url_for('strava_confirm') }}" style="margin-top:16px;">
+      <input type="hidden" name="source" value="{{ source }}">
+      <button type="submit" class="btn-primary" style="width:auto; padding:12px 24px;">
+        Confirm import ({{ preview.rows | selectattr('is_new') | list | length }} new)
+      </button>
+    </form>
+  {% endif %}
+
+  <p style="margin-top:16px;"><a href="{{ url_for('strava_status_page') }}" class="edit-link">Back to sync options</a></p>
+</div>
+{% endblock %}

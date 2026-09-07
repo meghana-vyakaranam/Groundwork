@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}History · Groundwork{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-title">Daily check-in history</div>
+
+  {% if not rows %}
+  <p style="font-size:13px; color:var(--ink-secondary);">
+    Nothing submitted yet — head back to the dashboard, log today's food and water, and click
+    "Submit today's log" to start building history.
+  </p>
+  {% else %}
+  <div class="health-table-wrap">
+    <table class="health-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Calories</th>
+          <th>Protein</th>
+          <th>Water</th>
+          <th>Activity cal</th>
+          <th>Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+        <tr>
+          <td>{{ row.date }}</td>
+          <td>{{ row.calories_logged | round(0) | int }} / {{ row.target_calories | round(0) | int }}</td>
+          <td>{{ row.protein_g | round(0) | int }}g / {{ row.target_protein_g | round(0) | int }}g</td>
+          <td>{{ row.water_ml | round(0) | int }} / {{ row.target_water_ml | round(0) | int }} ml</td>
+          <td>{{ row.activity_calories | round(0) | int }}</td>
+          <td>
+            {% if row.status == 'good' %}<span class="chip ok">{{ row.title }}</span>
+            {% else %}<span class="chip miss">{{ row.title }}</span>{% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+
+  <p style="margin-top:16px;"><a href="{{ url_for('dashboard') }}" class="edit-link">Back to dashboard</a></p>
+</div>
+{% endblock %}

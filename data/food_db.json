@@ -1,0 +1,2262 @@
+{
+  "_comment": "Curated local nutrition dataset. Values are reasonable approximations per typical serving, not lab-measured. No external API dependency — extend this file with more entries as needed.",
+  "foods": [
+    {
+      "name": "peanut butter sandwich",
+      "unit": "1 sandwich",
+      "calories": 330,
+      "protein_g": 12,
+      "carbs_g": 35,
+      "fat_g": 17,
+      "fiber_g": 3,
+      "aliases": [
+        "pb sandwich",
+        "peanut butter",
+        "pbj",
+        "pb&j",
+        "peanut jam bread",
+        "peanut butter jam bread",
+        "pb jam sandwich"
+      ]
+    },
+    {
+      "name": "aloo sandwich",
+      "unit": "1 sandwich",
+      "calories": 280,
+      "protein_g": 7,
+      "carbs_g": 40,
+      "fat_g": 11,
+      "fiber_g": 3,
+      "aliases": [
+        "aloo bread",
+        "potato sandwich",
+        "bombay sandwich"
+      ]
+    },
+    {
+      "name": "scrambled eggs",
+      "unit": "2 eggs",
+      "calories": 180,
+      "protein_g": 13,
+      "carbs_g": 2,
+      "fat_g": 13,
+      "fiber_g": 0,
+      "aliases": [
+        "eggs",
+        "egg scramble",
+        "scrambled egg"
+      ]
+    },
+    {
+      "name": "oatmeal",
+      "unit": "1 bowl (240g cooked)",
+      "calories": 210,
+      "protein_g": 7,
+      "carbs_g": 37,
+      "fat_g": 4,
+      "fiber_g": 5,
+      "aliases": [
+        "oats",
+        "porridge"
+      ]
+    },
+    {
+      "name": "banana",
+      "unit": "1 medium",
+      "calories": 105,
+      "protein_g": 1,
+      "carbs_g": 27,
+      "fat_g": 0,
+      "fiber_g": 3,
+      "aliases": []
+    },
+    {
+      "name": "apple",
+      "unit": "1 medium",
+      "calories": 95,
+      "protein_g": 0,
+      "carbs_g": 25,
+      "fat_g": 0,
+      "fiber_g": 4,
+      "aliases": []
+    },
+    {
+      "name": "grilled chicken breast",
+      "unit": "150g",
+      "calories": 250,
+      "protein_g": 46,
+      "carbs_g": 0,
+      "fat_g": 6,
+      "fiber_g": 0,
+      "aliases": [
+        "chicken breast",
+        "grilled chicken"
+      ]
+    },
+    {
+      "name": "white rice",
+      "unit": "1 cup cooked",
+      "calories": 200,
+      "protein_g": 4,
+      "carbs_g": 45,
+      "fat_g": 0.4,
+      "fiber_g": 0.6,
+      "aliases": [
+        "steamed rice",
+        "plain rice",
+        "rice"
+      ]
+    },
+    {
+      "name": "brown rice",
+      "unit": "1 cup cooked",
+      "calories": 215,
+      "protein_g": 5,
+      "carbs_g": 45,
+      "fat_g": 2,
+      "fiber_g": 3,
+      "aliases": []
+    },
+    {
+      "name": "greek yogurt",
+      "unit": "1 cup (170g)",
+      "calories": 150,
+      "protein_g": 20,
+      "carbs_g": 9,
+      "fat_g": 4,
+      "fiber_g": 0,
+      "aliases": [
+        "greek yoghurt",
+        "yogurt greek"
+      ]
+    },
+    {
+      "name": "protein shake",
+      "unit": "1 scoop + water",
+      "calories": 130,
+      "protein_g": 25,
+      "carbs_g": 4,
+      "fat_g": 2,
+      "fiber_g": 1,
+      "aliases": [
+        "whey shake",
+        "protein powder shake"
+      ]
+    },
+    {
+      "name": "salad with dressing",
+      "unit": "1 bowl",
+      "calories": 220,
+      "protein_g": 4,
+      "carbs_g": 12,
+      "fat_g": 17,
+      "fiber_g": 4,
+      "aliases": [
+        "side salad",
+        "green salad"
+      ]
+    },
+    {
+      "name": "avocado toast",
+      "unit": "1 slice",
+      "calories": 260,
+      "protein_g": 6,
+      "carbs_g": 26,
+      "fat_g": 15,
+      "fiber_g": 7,
+      "aliases": [
+        "avo toast"
+      ]
+    },
+    {
+      "name": "pasta with marinara",
+      "unit": "1.5 cups",
+      "calories": 380,
+      "protein_g": 12,
+      "carbs_g": 68,
+      "fat_g": 6,
+      "fiber_g": 5,
+      "aliases": [
+        "pasta marinara",
+        "spaghetti marinara",
+        "pasta red sauce",
+        "pasta",
+        "pastas"
+      ]
+    },
+    {
+      "name": "thai red curry",
+      "unit": "1.5 cups with rice",
+      "calories": 420,
+      "protein_g": 14,
+      "carbs_g": 46,
+      "fat_g": 20,
+      "fiber_g": 4,
+      "aliases": [
+        "red thai curry",
+        "thai curry",
+        "red curry"
+      ]
+    },
+    {
+      "name": "veg hakka noodles",
+      "unit": "1.5 cups",
+      "calories": 380,
+      "protein_g": 9,
+      "carbs_g": 58,
+      "fat_g": 12,
+      "fiber_g": 4,
+      "aliases": [
+        "indian noodles",
+        "indian noodle",
+        "hakka noodles",
+        "chow mein",
+        "chowmein",
+        "veg noodles",
+        "noodles"
+      ]
+    },
+    {
+      "name": "almonds",
+      "unit": "28g (~23 nuts)",
+      "calories": 165,
+      "protein_g": 6,
+      "carbs_g": 6,
+      "fat_g": 14,
+      "fiber_g": 3,
+      "aliases": [
+        "almond"
+      ]
+    },
+    {
+      "name": "protein bar",
+      "unit": "1 bar",
+      "calories": 220,
+      "protein_g": 20,
+      "carbs_g": 24,
+      "fat_g": 8,
+      "fiber_g": 3,
+      "aliases": []
+    },
+    {
+      "name": "turkey sandwich",
+      "unit": "1 sandwich",
+      "calories": 320,
+      "protein_g": 24,
+      "carbs_g": 34,
+      "fat_g": 9,
+      "fiber_g": 3,
+      "aliases": []
+    },
+    {
+      "name": "grilled salmon",
+      "unit": "150g",
+      "calories": 310,
+      "protein_g": 34,
+      "carbs_g": 0,
+      "fat_g": 18,
+      "fiber_g": 0,
+      "aliases": [
+        "salmon",
+        "baked salmon"
+      ]
+    },
+    {
+      "name": "cottage cheese",
+      "unit": "1 cup",
+      "calories": 220,
+      "protein_g": 25,
+      "carbs_g": 9,
+      "fat_g": 9,
+      "fiber_g": 0,
+      "aliases": []
+    },
+    {
+      "name": "hummus with pita",
+      "unit": "1 serving",
+      "calories": 290,
+      "protein_g": 9,
+      "carbs_g": 34,
+      "fat_g": 14,
+      "fiber_g": 6,
+      "aliases": [
+        "hummus pita"
+      ]
+    },
+    {
+      "name": "granola",
+      "unit": "1/2 cup",
+      "calories": 240,
+      "protein_g": 6,
+      "carbs_g": 33,
+      "fat_g": 10,
+      "fiber_g": 4,
+      "aliases": []
+    },
+    {
+      "name": "cereal with milk",
+      "unit": "1 bowl",
+      "calories": 240,
+      "protein_g": 8,
+      "carbs_g": 42,
+      "fat_g": 5,
+      "fiber_g": 3,
+      "aliases": [
+        "cereal"
+      ]
+    },
+    {
+      "name": "smoothie",
+      "unit": "1 cup",
+      "calories": 220,
+      "protein_g": 8,
+      "carbs_g": 42,
+      "fat_g": 3,
+      "fiber_g": 4,
+      "aliases": [
+        "fruit smoothie"
+      ]
+    },
+    {
+      "name": "steak",
+      "unit": "170g",
+      "calories": 420,
+      "protein_g": 42,
+      "carbs_g": 0,
+      "fat_g": 27,
+      "fiber_g": 0,
+      "aliases": [
+        "beef steak",
+        "grilled steak"
+      ]
+    },
+    {
+      "name": "burger",
+      "unit": "1 burger",
+      "calories": 540,
+      "protein_g": 28,
+      "carbs_g": 40,
+      "fat_g": 29,
+      "fiber_g": 2,
+      "aliases": [
+        "hamburger",
+        "cheeseburger"
+      ]
+    },
+    {
+      "name": "pizza slice",
+      "unit": "1 slice",
+      "calories": 285,
+      "protein_g": 12,
+      "carbs_g": 36,
+      "fat_g": 10,
+      "fiber_g": 2,
+      "aliases": [
+        "pizza"
+      ]
+    },
+    {
+      "name": "sushi roll",
+      "unit": "1 roll (8 pieces)",
+      "calories": 260,
+      "protein_g": 9,
+      "carbs_g": 48,
+      "fat_g": 3,
+      "fiber_g": 2,
+      "aliases": [
+        "sushi"
+      ]
+    },
+    {
+      "name": "tofu stir fry",
+      "unit": "1.5 cups",
+      "calories": 320,
+      "protein_g": 18,
+      "carbs_g": 28,
+      "fat_g": 16,
+      "fiber_g": 5,
+      "aliases": [
+        "tofu stirfry",
+        "stir fried tofu"
+      ]
+    },
+    {
+      "name": "boiled eggs",
+      "unit": "2 eggs",
+      "calories": 155,
+      "protein_g": 13,
+      "carbs_g": 1,
+      "fat_g": 11,
+      "fiber_g": 0,
+      "aliases": [
+        "hard boiled eggs",
+        "boiled egg"
+      ]
+    },
+    {
+      "name": "protein pancakes",
+      "unit": "3 pancakes",
+      "calories": 300,
+      "protein_g": 24,
+      "carbs_g": 30,
+      "fat_g": 9,
+      "fiber_g": 3,
+      "aliases": [
+        "protein pancake"
+      ]
+    },
+    {
+      "name": "trail mix",
+      "unit": "1/4 cup",
+      "calories": 175,
+      "protein_g": 5,
+      "carbs_g": 16,
+      "fat_g": 11,
+      "fiber_g": 3,
+      "aliases": []
+    },
+    {
+      "name": "milk",
+      "unit": "1 cup",
+      "calories": 150,
+      "protein_g": 8,
+      "carbs_g": 12,
+      "fat_g": 8,
+      "fiber_g": 0,
+      "aliases": [
+        "glass of milk",
+        "whole milk"
+      ]
+    },
+    {
+      "name": "cheese slice",
+      "unit": "1 slice",
+      "calories": 110,
+      "protein_g": 7,
+      "carbs_g": 1,
+      "fat_g": 9,
+      "fiber_g": 0,
+      "aliases": [
+        "cheese"
+      ]
+    },
+    {
+      "name": "palak paneer",
+      "unit": "1 cup",
+      "calories": 320,
+      "protein_g": 14,
+      "carbs_g": 12,
+      "fat_g": 24,
+      "fiber_g": 5,
+      "aliases": [
+        "spinach paneer"
+      ]
+    },
+    {
+      "name": "paneer tikka",
+      "unit": "6 pieces",
+      "calories": 290,
+      "protein_g": 18,
+      "carbs_g": 8,
+      "fat_g": 21,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "chana masala",
+      "unit": "1 cup",
+      "calories": 230,
+      "protein_g": 10,
+      "carbs_g": 35,
+      "fat_g": 6,
+      "fiber_g": 9,
+      "aliases": [
+        "chole",
+        "chole masala"
+      ]
+    },
+    {
+      "name": "dal tadka",
+      "unit": "1 cup",
+      "calories": 200,
+      "protein_g": 10,
+      "carbs_g": 28,
+      "fat_g": 6,
+      "fiber_g": 7,
+      "aliases": [
+        "yellow dal",
+        "toor dal"
+      ]
+    },
+    {
+      "name": "dal makhani",
+      "unit": "1 cup",
+      "calories": 310,
+      "protein_g": 12,
+      "carbs_g": 30,
+      "fat_g": 16,
+      "fiber_g": 8,
+      "aliases": [
+        "makhani dal"
+      ]
+    },
+    {
+      "name": "aloo gobi",
+      "unit": "1 cup",
+      "calories": 210,
+      "protein_g": 5,
+      "carbs_g": 26,
+      "fat_g": 10,
+      "fiber_g": 6,
+      "aliases": [
+        "potato cauliflower"
+      ]
+    },
+    {
+      "name": "aloo sabzi",
+      "unit": "1 cup",
+      "calories": 200,
+      "protein_g": 3,
+      "carbs_g": 28,
+      "fat_g": 8,
+      "fiber_g": 4,
+      "aliases": [
+        "aloo",
+        "sookhi aloo",
+        "potato sabzi",
+        "aloo fry",
+        "jeera aloo sabzi"
+      ]
+    },
+    {
+      "name": "gobi sabzi",
+      "unit": "1 cup",
+      "calories": 160,
+      "protein_g": 5,
+      "carbs_g": 14,
+      "fat_g": 9,
+      "fiber_g": 5,
+      "aliases": [
+        "gobi",
+        "cauliflower sabzi",
+        "gobi fry",
+        "dry gobi"
+      ]
+    },
+    {
+      "name": "paneer curry",
+      "unit": "1 cup",
+      "calories": 300,
+      "protein_g": 16,
+      "carbs_g": 12,
+      "fat_g": 22,
+      "fiber_g": 3,
+      "aliases": [
+        "paneer",
+        "paneer sabzi",
+        "paneer masala"
+      ]
+    },
+    {
+      "name": "beans curry",
+      "unit": "1 cup",
+      "calories": 160,
+      "protein_g": 5,
+      "carbs_g": 18,
+      "fat_g": 8,
+      "fiber_g": 6,
+      "aliases": [
+        "beans",
+        "french beans sabzi",
+        "beans sabzi",
+        "beans poriyal",
+        "green beans curry"
+      ]
+    },
+    {
+      "name": "bhindi masala",
+      "unit": "1 cup",
+      "calories": 180,
+      "protein_g": 4,
+      "carbs_g": 16,
+      "fat_g": 12,
+      "fiber_g": 5,
+      "aliases": [
+        "bhindi",
+        "okra masala"
+      ]
+    },
+    {
+      "name": "rajma",
+      "unit": "1 cup",
+      "calories": 260,
+      "protein_g": 12,
+      "carbs_g": 38,
+      "fat_g": 6,
+      "fiber_g": 10,
+      "aliases": [
+        "rajma masala",
+        "kidney bean curry"
+      ]
+    },
+    {
+      "name": "baingan bharta",
+      "unit": "1 cup",
+      "calories": 190,
+      "protein_g": 4,
+      "carbs_g": 16,
+      "fat_g": 13,
+      "fiber_g": 6,
+      "aliases": [
+        "eggplant bharta",
+        "baingan"
+      ]
+    },
+    {
+      "name": "roti",
+      "unit": "1 piece",
+      "calories": 70,
+      "protein_g": 3,
+      "carbs_g": 15,
+      "fat_g": 0.4,
+      "fiber_g": 2,
+      "aliases": [
+        "chapati",
+        "phulka"
+      ]
+    },
+    {
+      "name": "naan",
+      "unit": "1 piece",
+      "calories": 260,
+      "protein_g": 7,
+      "carbs_g": 45,
+      "fat_g": 5,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "paratha",
+      "unit": "1 piece",
+      "calories": 120,
+      "protein_g": 3,
+      "carbs_g": 18,
+      "fat_g": 4,
+      "fiber_g": 1.5,
+      "aliases": [
+        "plain paratha"
+      ]
+    },
+    {
+      "name": "aloo paratha",
+      "unit": "1 piece",
+      "calories": 280,
+      "protein_g": 6,
+      "carbs_g": 40,
+      "fat_g": 11,
+      "fiber_g": 3,
+      "aliases": [
+        "potato paratha"
+      ]
+    },
+    {
+      "name": "jeera rice",
+      "unit": "1 cup",
+      "calories": 220,
+      "protein_g": 4,
+      "carbs_g": 42,
+      "fat_g": 5,
+      "fiber_g": 1,
+      "aliases": [
+        "cumin rice"
+      ]
+    },
+    {
+      "name": "veg biryani",
+      "unit": "1.5 cups",
+      "calories": 400,
+      "protein_g": 8,
+      "carbs_g": 60,
+      "fat_g": 14,
+      "fiber_g": 4,
+      "aliases": [
+        "vegetable biryani"
+      ]
+    },
+    {
+      "name": "chicken biryani",
+      "unit": "1.5 cups",
+      "calories": 450,
+      "protein_g": 22,
+      "carbs_g": 55,
+      "fat_g": 14,
+      "fiber_g": 3,
+      "aliases": []
+    },
+    {
+      "name": "mutton biryani",
+      "unit": "1.5 cups",
+      "calories": 550,
+      "protein_g": 26,
+      "carbs_g": 55,
+      "fat_g": 24,
+      "fiber_g": 3,
+      "aliases": [
+        "lamb biryani"
+      ]
+    },
+    {
+      "name": "dosa",
+      "unit": "1 plain dosa",
+      "calories": 170,
+      "protein_g": 4,
+      "carbs_g": 30,
+      "fat_g": 4,
+      "fiber_g": 2,
+      "aliases": [
+        "plain dosa"
+      ]
+    },
+    {
+      "name": "masala dosa",
+      "unit": "1 dosa",
+      "calories": 260,
+      "protein_g": 5,
+      "carbs_g": 40,
+      "fat_g": 9,
+      "fiber_g": 4,
+      "aliases": []
+    },
+    {
+      "name": "idli",
+      "unit": "2 pieces",
+      "calories": 140,
+      "protein_g": 4,
+      "carbs_g": 28,
+      "fat_g": 1,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "sambar",
+      "unit": "1 cup",
+      "calories": 150,
+      "protein_g": 7,
+      "carbs_g": 22,
+      "fat_g": 4,
+      "fiber_g": 6,
+      "aliases": []
+    },
+    {
+      "name": "vada",
+      "unit": "2 pieces",
+      "calories": 200,
+      "protein_g": 6,
+      "carbs_g": 22,
+      "fat_g": 10,
+      "fiber_g": 3,
+      "aliases": [
+        "medu vada"
+      ]
+    },
+    {
+      "name": "upma",
+      "unit": "1 cup",
+      "calories": 230,
+      "protein_g": 6,
+      "carbs_g": 34,
+      "fat_g": 8,
+      "fiber_g": 3,
+      "aliases": []
+    },
+    {
+      "name": "chicken curry",
+      "unit": "1 cup",
+      "calories": 280,
+      "protein_g": 24,
+      "carbs_g": 6,
+      "fat_g": 16,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "butter chicken",
+      "unit": "1 cup",
+      "calories": 400,
+      "protein_g": 24,
+      "carbs_g": 12,
+      "fat_g": 29,
+      "fiber_g": 2,
+      "aliases": [
+        "murgh makhani"
+      ]
+    },
+    {
+      "name": "tandoori chicken",
+      "unit": "2 pieces",
+      "calories": 290,
+      "protein_g": 34,
+      "carbs_g": 4,
+      "fat_g": 15,
+      "fiber_g": 1,
+      "aliases": []
+    },
+    {
+      "name": "egg curry",
+      "unit": "1 cup (2 eggs)",
+      "calories": 300,
+      "protein_g": 15,
+      "carbs_g": 10,
+      "fat_g": 22,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "fish curry",
+      "unit": "1 cup",
+      "calories": 280,
+      "protein_g": 24,
+      "carbs_g": 8,
+      "fat_g": 17,
+      "fiber_g": 1,
+      "aliases": []
+    },
+    {
+      "name": "samosa",
+      "unit": "1 piece",
+      "calories": 260,
+      "protein_g": 4,
+      "carbs_g": 28,
+      "fat_g": 15,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "pakora",
+      "unit": "5 pieces",
+      "calories": 220,
+      "protein_g": 5,
+      "carbs_g": 22,
+      "fat_g": 13,
+      "fiber_g": 3,
+      "aliases": [
+        "bhajji",
+        "pakoda"
+      ]
+    },
+    {
+      "name": "poha",
+      "unit": "1 cup",
+      "calories": 250,
+      "protein_g": 4,
+      "carbs_g": 42,
+      "fat_g": 7,
+      "fiber_g": 3,
+      "aliases": []
+    },
+    {
+      "name": "dhokla",
+      "unit": "4 pieces",
+      "calories": 160,
+      "protein_g": 6,
+      "carbs_g": 24,
+      "fat_g": 4,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "raita",
+      "unit": "1/2 cup",
+      "calories": 70,
+      "protein_g": 3,
+      "carbs_g": 6,
+      "fat_g": 4,
+      "fiber_g": 1,
+      "aliases": []
+    },
+    {
+      "name": "curd",
+      "unit": "1/2 cup",
+      "calories": 75,
+      "protein_g": 4,
+      "carbs_g": 6,
+      "fat_g": 4,
+      "fiber_g": 0,
+      "aliases": [
+        "yogurt",
+        "dahi",
+        "plain curd"
+      ]
+    },
+    {
+      "name": "ghee",
+      "unit": "1 tsp",
+      "calories": 45,
+      "protein_g": 0,
+      "carbs_g": 0,
+      "fat_g": 5,
+      "fiber_g": 0,
+      "aliases": [
+        "clarified butter"
+      ]
+    },
+    {
+      "name": "tandoori roti",
+      "unit": "1 piece",
+      "calories": 120,
+      "protein_g": 4,
+      "carbs_g": 20,
+      "fat_g": 3,
+      "fiber_g": 3,
+      "aliases": [
+        "tandoori chapati"
+      ]
+    },
+    {
+      "name": "missi roti",
+      "unit": "1 piece",
+      "calories": 140,
+      "protein_g": 5,
+      "carbs_g": 22,
+      "fat_g": 4,
+      "fiber_g": 4,
+      "aliases": []
+    },
+    {
+      "name": "bajra roti",
+      "unit": "1 piece",
+      "calories": 100,
+      "protein_g": 3,
+      "carbs_g": 18,
+      "fat_g": 2,
+      "fiber_g": 3,
+      "aliases": [
+        "bajri roti",
+        "pearl millet roti"
+      ]
+    },
+    {
+      "name": "jowar roti",
+      "unit": "1 piece",
+      "calories": 105,
+      "protein_g": 3,
+      "carbs_g": 20,
+      "fat_g": 1,
+      "fiber_g": 3,
+      "aliases": [
+        "jowar bhakri",
+        "sorghum roti"
+      ]
+    },
+    {
+      "name": "makki di roti",
+      "unit": "1 piece",
+      "calories": 120,
+      "protein_g": 3,
+      "carbs_g": 20,
+      "fat_g": 3,
+      "fiber_g": 3,
+      "aliases": [
+        "makki roti",
+        "maize roti",
+        "corn roti"
+      ]
+    },
+    {
+      "name": "garlic naan",
+      "unit": "1 piece",
+      "calories": 300,
+      "protein_g": 8,
+      "carbs_g": 48,
+      "fat_g": 8,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "butter naan",
+      "unit": "1 piece",
+      "calories": 310,
+      "protein_g": 7,
+      "carbs_g": 45,
+      "fat_g": 11,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "kulcha",
+      "unit": "1 piece",
+      "calories": 250,
+      "protein_g": 6,
+      "carbs_g": 42,
+      "fat_g": 6,
+      "fiber_g": 2,
+      "aliases": [
+        "amritsari kulcha"
+      ]
+    },
+    {
+      "name": "puri",
+      "unit": "2 pieces",
+      "calories": 300,
+      "protein_g": 4,
+      "carbs_g": 32,
+      "fat_g": 16,
+      "fiber_g": 1.5,
+      "aliases": [
+        "poori"
+      ]
+    },
+    {
+      "name": "bhatura",
+      "unit": "1 piece",
+      "calories": 340,
+      "protein_g": 7,
+      "carbs_g": 40,
+      "fat_g": 16,
+      "fiber_g": 2,
+      "aliases": [
+        "bhature"
+      ]
+    },
+    {
+      "name": "lachha paratha",
+      "unit": "1 piece",
+      "calories": 260,
+      "protein_g": 5,
+      "carbs_g": 32,
+      "fat_g": 12,
+      "fiber_g": 2,
+      "aliases": [
+        "laccha paratha"
+      ]
+    },
+    {
+      "name": "methi paratha",
+      "unit": "1 piece",
+      "calories": 220,
+      "protein_g": 5,
+      "carbs_g": 28,
+      "fat_g": 10,
+      "fiber_g": 3,
+      "aliases": [
+        "fenugreek paratha"
+      ]
+    },
+    {
+      "name": "gobi paratha",
+      "unit": "1 piece",
+      "calories": 230,
+      "protein_g": 5,
+      "carbs_g": 30,
+      "fat_g": 10,
+      "fiber_g": 3,
+      "aliases": [
+        "cauliflower paratha"
+      ]
+    },
+    {
+      "name": "paneer paratha",
+      "unit": "1 piece",
+      "calories": 290,
+      "protein_g": 9,
+      "carbs_g": 30,
+      "fat_g": 15,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "matar paneer",
+      "unit": "1 cup",
+      "calories": 300,
+      "protein_g": 13,
+      "carbs_g": 18,
+      "fat_g": 20,
+      "fiber_g": 5,
+      "aliases": [
+        "mutter paneer",
+        "peas paneer"
+      ]
+    },
+    {
+      "name": "kadai paneer",
+      "unit": "1 cup",
+      "calories": 320,
+      "protein_g": 14,
+      "carbs_g": 14,
+      "fat_g": 24,
+      "fiber_g": 4,
+      "aliases": [
+        "karahi paneer"
+      ]
+    },
+    {
+      "name": "shahi paneer",
+      "unit": "1 cup",
+      "calories": 340,
+      "protein_g": 13,
+      "carbs_g": 16,
+      "fat_g": 26,
+      "fiber_g": 3,
+      "aliases": []
+    },
+    {
+      "name": "paneer butter masala",
+      "unit": "1 cup",
+      "calories": 360,
+      "protein_g": 14,
+      "carbs_g": 16,
+      "fat_g": 27,
+      "fiber_g": 3,
+      "aliases": [
+        "paneer makhani"
+      ]
+    },
+    {
+      "name": "malai kofta",
+      "unit": "1 cup (2 kofta + gravy)",
+      "calories": 380,
+      "protein_g": 9,
+      "carbs_g": 24,
+      "fat_g": 28,
+      "fiber_g": 3,
+      "aliases": []
+    },
+    {
+      "name": "mutter mushroom",
+      "unit": "1 cup",
+      "calories": 180,
+      "protein_g": 7,
+      "carbs_g": 16,
+      "fat_g": 10,
+      "fiber_g": 5,
+      "aliases": [
+        "matar mushroom"
+      ]
+    },
+    {
+      "name": "aloo matar",
+      "unit": "1 cup",
+      "calories": 210,
+      "protein_g": 6,
+      "carbs_g": 28,
+      "fat_g": 9,
+      "fiber_g": 6,
+      "aliases": [
+        "aloo mutter",
+        "potato peas curry"
+      ]
+    },
+    {
+      "name": "aloo jeera",
+      "unit": "1 cup",
+      "calories": 190,
+      "protein_g": 3,
+      "carbs_g": 26,
+      "fat_g": 9,
+      "fiber_g": 4,
+      "aliases": [
+        "jeera aloo"
+      ]
+    },
+    {
+      "name": "gobi manchurian",
+      "unit": "1 cup (8 pieces)",
+      "calories": 280,
+      "protein_g": 6,
+      "carbs_g": 32,
+      "fat_g": 14,
+      "fiber_g": 4,
+      "aliases": [
+        "cauliflower manchurian"
+      ]
+    },
+    {
+      "name": "karela sabzi",
+      "unit": "1 cup",
+      "calories": 140,
+      "protein_g": 3,
+      "carbs_g": 14,
+      "fat_g": 8,
+      "fiber_g": 5,
+      "aliases": [
+        "bitter gourd sabzi",
+        "karela fry"
+      ]
+    },
+    {
+      "name": "lauki sabzi",
+      "unit": "1 cup",
+      "calories": 120,
+      "protein_g": 2,
+      "carbs_g": 12,
+      "fat_g": 7,
+      "fiber_g": 3,
+      "aliases": [
+        "bottle gourd sabzi",
+        "doodhi sabzi"
+      ]
+    },
+    {
+      "name": "mix veg curry",
+      "unit": "1 cup",
+      "calories": 200,
+      "protein_g": 5,
+      "carbs_g": 22,
+      "fat_g": 11,
+      "fiber_g": 5,
+      "aliases": [
+        "mixed vegetable curry",
+        "veg kurma"
+      ]
+    },
+    {
+      "name": "kadhi pakora",
+      "unit": "1 cup",
+      "calories": 230,
+      "protein_g": 7,
+      "carbs_g": 20,
+      "fat_g": 13,
+      "fiber_g": 2,
+      "aliases": [
+        "punjabi kadhi",
+        "kadhi"
+      ]
+    },
+    {
+      "name": "sarson ka saag",
+      "unit": "1 cup",
+      "calories": 210,
+      "protein_g": 6,
+      "carbs_g": 14,
+      "fat_g": 15,
+      "fiber_g": 6,
+      "aliases": [
+        "sarson da saag",
+        "mustard greens curry",
+        "saag"
+      ]
+    },
+    {
+      "name": "methi malai matar",
+      "unit": "1 cup",
+      "calories": 260,
+      "protein_g": 8,
+      "carbs_g": 16,
+      "fat_g": 18,
+      "fiber_g": 5,
+      "aliases": []
+    },
+    {
+      "name": "paneer bhurji",
+      "unit": "1 cup",
+      "calories": 290,
+      "protein_g": 16,
+      "carbs_g": 8,
+      "fat_g": 22,
+      "fiber_g": 2,
+      "aliases": [
+        "scrambled paneer"
+      ]
+    },
+    {
+      "name": "egg bhurji",
+      "unit": "1 cup (3 eggs)",
+      "calories": 260,
+      "protein_g": 16,
+      "carbs_g": 6,
+      "fat_g": 19,
+      "fiber_g": 1,
+      "aliases": [
+        "anda bhurji",
+        "indian egg scramble"
+      ]
+    },
+    {
+      "name": "chicken tikka masala",
+      "unit": "1 cup",
+      "calories": 380,
+      "protein_g": 27,
+      "carbs_g": 14,
+      "fat_g": 24,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "chicken korma",
+      "unit": "1 cup",
+      "calories": 400,
+      "protein_g": 24,
+      "carbs_g": 12,
+      "fat_g": 28,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "mutton curry",
+      "unit": "1 cup",
+      "calories": 350,
+      "protein_g": 24,
+      "carbs_g": 5,
+      "fat_g": 24,
+      "fiber_g": 2,
+      "aliases": [
+        "lamb curry",
+        "goat curry"
+      ]
+    },
+    {
+      "name": "mutton rogan josh",
+      "unit": "1 cup",
+      "calories": 420,
+      "protein_g": 26,
+      "carbs_g": 10,
+      "fat_g": 30,
+      "fiber_g": 2,
+      "aliases": [
+        "rogan josh"
+      ]
+    },
+    {
+      "name": "keema",
+      "unit": "1 cup",
+      "calories": 350,
+      "protein_g": 24,
+      "carbs_g": 8,
+      "fat_g": 24,
+      "fiber_g": 2,
+      "aliases": [
+        "keema matar",
+        "minced meat curry",
+        "kheema"
+      ]
+    },
+    {
+      "name": "chicken 65",
+      "unit": "6 pieces",
+      "calories": 300,
+      "protein_g": 22,
+      "carbs_g": 14,
+      "fat_g": 18,
+      "fiber_g": 1,
+      "aliases": []
+    },
+    {
+      "name": "chicken lollipop",
+      "unit": "4 pieces",
+      "calories": 320,
+      "protein_g": 24,
+      "carbs_g": 16,
+      "fat_g": 18,
+      "fiber_g": 1,
+      "aliases": []
+    },
+    {
+      "name": "fish fry",
+      "unit": "2 pieces",
+      "calories": 260,
+      "protein_g": 22,
+      "carbs_g": 10,
+      "fat_g": 15,
+      "fiber_g": 1,
+      "aliases": [
+        "fried fish",
+        "amritsari fish"
+      ]
+    },
+    {
+      "name": "prawn curry",
+      "unit": "1 cup",
+      "calories": 260,
+      "protein_g": 22,
+      "carbs_g": 8,
+      "fat_g": 15,
+      "fiber_g": 2,
+      "aliases": [
+        "shrimp curry"
+      ]
+    },
+    {
+      "name": "goan fish curry",
+      "unit": "1 cup",
+      "calories": 270,
+      "protein_g": 22,
+      "carbs_g": 8,
+      "fat_g": 16,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "veg pulao",
+      "unit": "1.5 cups",
+      "calories": 330,
+      "protein_g": 6,
+      "carbs_g": 52,
+      "fat_g": 11,
+      "fiber_g": 4,
+      "aliases": [
+        "vegetable pulao",
+        "pulav"
+      ]
+    },
+    {
+      "name": "lemon rice",
+      "unit": "1 cup",
+      "calories": 240,
+      "protein_g": 4,
+      "carbs_g": 40,
+      "fat_g": 8,
+      "fiber_g": 2,
+      "aliases": [
+        "chitranna"
+      ]
+    },
+    {
+      "name": "curd rice",
+      "unit": "1 cup",
+      "calories": 220,
+      "protein_g": 6,
+      "carbs_g": 34,
+      "fat_g": 6,
+      "fiber_g": 1,
+      "aliases": [
+        "thayir sadam",
+        "yogurt rice"
+      ]
+    },
+    {
+      "name": "tamarind rice",
+      "unit": "1 cup",
+      "calories": 260,
+      "protein_g": 4,
+      "carbs_g": 42,
+      "fat_g": 9,
+      "fiber_g": 2,
+      "aliases": [
+        "puliyodarai",
+        "puliogare"
+      ]
+    },
+    {
+      "name": "coconut rice",
+      "unit": "1 cup",
+      "calories": 270,
+      "protein_g": 4,
+      "carbs_g": 38,
+      "fat_g": 12,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "khichdi",
+      "unit": "1 cup",
+      "calories": 220,
+      "protein_g": 8,
+      "carbs_g": 36,
+      "fat_g": 5,
+      "fiber_g": 4,
+      "aliases": [
+        "moong dal khichdi",
+        "khichuri"
+      ]
+    },
+    {
+      "name": "tomato rice",
+      "unit": "1 cup",
+      "calories": 240,
+      "protein_g": 4,
+      "carbs_g": 40,
+      "fat_g": 7,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "bisi bele bath",
+      "unit": "1.5 cups",
+      "calories": 320,
+      "protein_g": 9,
+      "carbs_g": 50,
+      "fat_g": 9,
+      "fiber_g": 6,
+      "aliases": [
+        "bisibelebath"
+      ]
+    },
+    {
+      "name": "rava dosa",
+      "unit": "1 dosa",
+      "calories": 200,
+      "protein_g": 4,
+      "carbs_g": 28,
+      "fat_g": 8,
+      "fiber_g": 1,
+      "aliases": [
+        "rava dosai"
+      ]
+    },
+    {
+      "name": "uttapam",
+      "unit": "1 piece",
+      "calories": 220,
+      "protein_g": 6,
+      "carbs_g": 34,
+      "fat_g": 6,
+      "fiber_g": 3,
+      "aliases": [
+        "uthappam"
+      ]
+    },
+    {
+      "name": "appam",
+      "unit": "2 pieces",
+      "calories": 240,
+      "protein_g": 4,
+      "carbs_g": 40,
+      "fat_g": 7,
+      "fiber_g": 1,
+      "aliases": []
+    },
+    {
+      "name": "rasam",
+      "unit": "1 cup",
+      "calories": 90,
+      "protein_g": 3,
+      "carbs_g": 12,
+      "fat_g": 3,
+      "fiber_g": 3,
+      "aliases": []
+    },
+    {
+      "name": "pongal",
+      "unit": "1 cup",
+      "calories": 260,
+      "protein_g": 7,
+      "carbs_g": 38,
+      "fat_g": 9,
+      "fiber_g": 3,
+      "aliases": [
+        "ven pongal",
+        "khara pongal"
+      ]
+    },
+    {
+      "name": "idiyappam",
+      "unit": "1 cup",
+      "calories": 200,
+      "protein_g": 4,
+      "carbs_g": 44,
+      "fat_g": 1,
+      "fiber_g": 2,
+      "aliases": [
+        "string hoppers"
+      ]
+    },
+    {
+      "name": "puttu",
+      "unit": "1 cup",
+      "calories": 220,
+      "protein_g": 5,
+      "carbs_g": 46,
+      "fat_g": 2,
+      "fiber_g": 3,
+      "aliases": []
+    },
+    {
+      "name": "coconut chutney",
+      "unit": "1/4 cup",
+      "calories": 90,
+      "protein_g": 2,
+      "carbs_g": 5,
+      "fat_g": 8,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "pani puri",
+      "unit": "6 pieces",
+      "calories": 180,
+      "protein_g": 3,
+      "carbs_g": 30,
+      "fat_g": 6,
+      "fiber_g": 2,
+      "aliases": [
+        "golgappa",
+        "puchka"
+      ]
+    },
+    {
+      "name": "bhel puri",
+      "unit": "1 cup",
+      "calories": 220,
+      "protein_g": 5,
+      "carbs_g": 34,
+      "fat_g": 8,
+      "fiber_g": 4,
+      "aliases": [
+        "bhelpuri"
+      ]
+    },
+    {
+      "name": "sev puri",
+      "unit": "6 pieces",
+      "calories": 260,
+      "protein_g": 5,
+      "carbs_g": 36,
+      "fat_g": 11,
+      "fiber_g": 3,
+      "aliases": []
+    },
+    {
+      "name": "dahi puri",
+      "unit": "6 pieces",
+      "calories": 240,
+      "protein_g": 5,
+      "carbs_g": 32,
+      "fat_g": 10,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "vada pav",
+      "unit": "1 piece",
+      "calories": 290,
+      "protein_g": 6,
+      "carbs_g": 40,
+      "fat_g": 12,
+      "fiber_g": 3,
+      "aliases": [
+        "wada pav"
+      ]
+    },
+    {
+      "name": "pav bhaji",
+      "unit": "1 plate (2 pav + bhaji)",
+      "calories": 450,
+      "protein_g": 10,
+      "carbs_g": 60,
+      "fat_g": 19,
+      "fiber_g": 7,
+      "aliases": []
+    },
+    {
+      "name": "misal pav",
+      "unit": "1 plate",
+      "calories": 400,
+      "protein_g": 14,
+      "carbs_g": 50,
+      "fat_g": 15,
+      "fiber_g": 9,
+      "aliases": []
+    },
+    {
+      "name": "kachori",
+      "unit": "2 pieces",
+      "calories": 320,
+      "protein_g": 6,
+      "carbs_g": 34,
+      "fat_g": 18,
+      "fiber_g": 3,
+      "aliases": []
+    },
+    {
+      "name": "aloo tikki",
+      "unit": "2 pieces",
+      "calories": 220,
+      "protein_g": 4,
+      "carbs_g": 30,
+      "fat_g": 10,
+      "fiber_g": 3,
+      "aliases": [
+        "potato tikki",
+        "aloo tikki chaat"
+      ]
+    },
+    {
+      "name": "papdi chaat",
+      "unit": "1 plate",
+      "calories": 320,
+      "protein_g": 7,
+      "carbs_g": 40,
+      "fat_g": 15,
+      "fiber_g": 4,
+      "aliases": []
+    },
+    {
+      "name": "dabeli",
+      "unit": "1 piece",
+      "calories": 250,
+      "protein_g": 4,
+      "carbs_g": 38,
+      "fat_g": 9,
+      "fiber_g": 3,
+      "aliases": [
+        "kutchi dabeli"
+      ]
+    },
+    {
+      "name": "sweet corn chaat",
+      "unit": "1 cup",
+      "calories": 180,
+      "protein_g": 5,
+      "carbs_g": 30,
+      "fat_g": 5,
+      "fiber_g": 4,
+      "aliases": [
+        "corn chaat",
+        "masala corn"
+      ]
+    },
+    {
+      "name": "murukku",
+      "unit": "6 pieces",
+      "calories": 220,
+      "protein_g": 4,
+      "carbs_g": 24,
+      "fat_g": 12,
+      "fiber_g": 2,
+      "aliases": [
+        "chakli"
+      ]
+    },
+    {
+      "name": "mathri",
+      "unit": "4 pieces",
+      "calories": 200,
+      "protein_g": 4,
+      "carbs_g": 20,
+      "fat_g": 12,
+      "fiber_g": 1,
+      "aliases": []
+    },
+    {
+      "name": "sabudana khichdi",
+      "unit": "1 cup",
+      "calories": 320,
+      "protein_g": 4,
+      "carbs_g": 48,
+      "fat_g": 13,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "sabudana vada",
+      "unit": "3 pieces",
+      "calories": 260,
+      "protein_g": 4,
+      "carbs_g": 32,
+      "fat_g": 13,
+      "fiber_g": 2,
+      "aliases": []
+    },
+    {
+      "name": "veg cutlet",
+      "unit": "2 pieces",
+      "calories": 240,
+      "protein_g": 5,
+      "carbs_g": 28,
+      "fat_g": 12,
+      "fiber_g": 4,
+      "aliases": [
+        "vegetable cutlet"
+      ]
+    },
+    {
+      "name": "dal fry",
+      "unit": "1 cup",
+      "calories": 220,
+      "protein_g": 10,
+      "carbs_g": 30,
+      "fat_g": 7,
+      "fiber_g": 7,
+      "aliases": []
+    },
+    {
+      "name": "moong dal",
+      "unit": "1 cup",
+      "calories": 180,
+      "protein_g": 12,
+      "carbs_g": 28,
+      "fat_g": 2,
+      "fiber_g": 8,
+      "aliases": [
+        "yellow moong dal"
+      ]
+    },
+    {
+      "name": "masoor dal",
+      "unit": "1 cup",
+      "calories": 200,
+      "protein_g": 12,
+      "carbs_g": 30,
+      "fat_g": 3,
+      "fiber_g": 8,
+      "aliases": [
+        "red lentil dal"
+      ]
+    },
+    {
+      "name": "dal palak",
+      "unit": "1 cup",
+      "calories": 210,
+      "protein_g": 10,
+      "carbs_g": 26,
+      "fat_g": 7,
+      "fiber_g": 7,
+      "aliases": [
+        "spinach dal",
+        "palak dal"
+      ]
+    },
+    {
+      "name": "panchmel dal",
+      "unit": "1 cup",
+      "calories": 230,
+      "protein_g": 11,
+      "carbs_g": 32,
+      "fat_g": 6,
+      "fiber_g": 8,
+      "aliases": [
+        "panchratna dal"
+      ]
+    },
+    {
+      "name": "urad dal",
+      "unit": "1 cup",
+      "calories": 200,
+      "protein_g": 11,
+      "carbs_g": 26,
+      "fat_g": 5,
+      "fiber_g": 7,
+      "aliases": [
+        "kali dal",
+        "maa ki dal"
+      ]
+    },
+    {
+      "name": "gulab jamun",
+      "unit": "2 pieces",
+      "calories": 300,
+      "protein_g": 4,
+      "carbs_g": 40,
+      "fat_g": 14,
+      "fiber_g": 0,
+      "aliases": []
+    },
+    {
+      "name": "rasgulla",
+      "unit": "2 pieces",
+      "calories": 200,
+      "protein_g": 5,
+      "carbs_g": 36,
+      "fat_g": 4,
+      "fiber_g": 0,
+      "aliases": [
+        "roshogolla"
+      ]
+    },
+    {
+      "name": "jalebi",
+      "unit": "3 pieces",
+      "calories": 300,
+      "protein_g": 2,
+      "carbs_g": 50,
+      "fat_g": 11,
+      "fiber_g": 0,
+      "aliases": []
+    },
+    {
+      "name": "besan ladoo",
+      "unit": "2 pieces",
+      "calories": 320,
+      "protein_g": 6,
+      "carbs_g": 34,
+      "fat_g": 18,
+      "fiber_g": 2,
+      "aliases": [
+        "besan laddu"
+      ]
+    },
+    {
+      "name": "motichoor ladoo",
+      "unit": "2 pieces",
+      "calories": 300,
+      "protein_g": 4,
+      "carbs_g": 38,
+      "fat_g": 15,
+      "fiber_g": 1,
+      "aliases": [
+        "motichoor laddu",
+        "boondi laddu"
+      ]
+    },
+    {
+      "name": "barfi",
+      "unit": "2 pieces",
+      "calories": 260,
+      "protein_g": 5,
+      "carbs_g": 30,
+      "fat_g": 13,
+      "fiber_g": 0,
+      "aliases": [
+        "burfi"
+      ]
+    },
+    {
+      "name": "kheer",
+      "unit": "1 cup",
+      "calories": 250,
+      "protein_g": 6,
+      "carbs_g": 30,
+      "fat_g": 7,
+      "fiber_g": 0.5,
+      "aliases": [
+        "payasam",
+        "indian rice pudding"
+      ]
+    },
+    {
+      "name": "gajar halwa",
+      "unit": "1 cup",
+      "calories": 340,
+      "protein_g": 6,
+      "carbs_g": 40,
+      "fat_g": 17,
+      "fiber_g": 3,
+      "aliases": [
+        "gajar ka halwa",
+        "carrot halwa"
+      ]
+    },
+    {
+      "name": "sooji halwa",
+      "unit": "1 cup",
+      "calories": 320,
+      "protein_g": 4,
+      "carbs_g": 42,
+      "fat_g": 15,
+      "fiber_g": 1,
+      "aliases": [
+        "sooji ka halwa",
+        "rava kesari",
+        "kesari bath"
+      ]
+    },
+    {
+      "name": "kaju katli",
+      "unit": "4 pieces",
+      "calories": 260,
+      "protein_g": 5,
+      "carbs_g": 26,
+      "fat_g": 15,
+      "fiber_g": 1,
+      "aliases": [
+        "kaju barfi",
+        "cashew fudge"
+      ]
+    },
+    {
+      "name": "rasmalai",
+      "unit": "2 pieces",
+      "calories": 260,
+      "protein_g": 8,
+      "carbs_g": 30,
+      "fat_g": 11,
+      "fiber_g": 0,
+      "aliases": []
+    },
+    {
+      "name": "shrikhand",
+      "unit": "1 cup",
+      "calories": 280,
+      "protein_g": 8,
+      "carbs_g": 42,
+      "fat_g": 8,
+      "fiber_g": 0,
+      "aliases": []
+    },
+    {
+      "name": "mysore pak",
+      "unit": "2 pieces",
+      "calories": 300,
+      "protein_g": 4,
+      "carbs_g": 30,
+      "fat_g": 19,
+      "fiber_g": 0,
+      "aliases": []
+    },
+    {
+      "name": "masala chai",
+      "unit": "1 cup",
+      "calories": 90,
+      "protein_g": 2,
+      "carbs_g": 12,
+      "fat_g": 3,
+      "fiber_g": 0,
+      "aliases": [
+        "chai",
+        "masala tea",
+        "indian tea"
+      ]
+    },
+    {
+      "name": "sweet lassi",
+      "unit": "1 glass (300ml)",
+      "calories": 220,
+      "protein_g": 7,
+      "carbs_g": 34,
+      "fat_g": 6,
+      "fiber_g": 0,
+      "aliases": [
+        "lassi"
+      ]
+    },
+    {
+      "name": "mango lassi",
+      "unit": "1 glass (300ml)",
+      "calories": 250,
+      "protein_g": 6,
+      "carbs_g": 44,
+      "fat_g": 6,
+      "fiber_g": 1,
+      "aliases": []
+    },
+    {
+      "name": "salted lassi",
+      "unit": "1 glass (300ml)",
+      "calories": 120,
+      "protein_g": 6,
+      "carbs_g": 10,
+      "fat_g": 6,
+      "fiber_g": 0,
+      "aliases": []
+    },
+    {
+      "name": "buttermilk",
+      "unit": "1 glass (250ml)",
+      "calories": 60,
+      "protein_g": 3,
+      "carbs_g": 6,
+      "fat_g": 2,
+      "fiber_g": 0,
+      "aliases": [
+        "chaas",
+        "spiced buttermilk"
+      ]
+    },
+    {
+      "name": "nimbu pani",
+      "unit": "1 glass (250ml)",
+      "calories": 60,
+      "protein_g": 0,
+      "carbs_g": 16,
+      "fat_g": 0,
+      "fiber_g": 0,
+      "aliases": [
+        "nimbu paani",
+        "indian lemonade"
+      ]
+    },
+    {
+      "name": "papad",
+      "unit": "2 pieces",
+      "calories": 70,
+      "protein_g": 3,
+      "carbs_g": 10,
+      "fat_g": 2,
+      "fiber_g": 1,
+      "aliases": [
+        "papadum",
+        "appalam"
+      ]
+    },
+    {
+      "name": "mango pickle",
+      "unit": "1 tbsp",
+      "calories": 35,
+      "protein_g": 0,
+      "carbs_g": 2,
+      "fat_g": 3,
+      "fiber_g": 0,
+      "aliases": [
+        "aam ka achar",
+        "achar"
+      ]
+    },
+    {
+      "name": "dal",
+      "unit": "1 cup",
+      "calories": 130,
+      "protein_g": 9,
+      "carbs_g": 22,
+      "fat_g": 2,
+      "fiber_g": 5,
+      "aliases": [
+        "daal",
+        "lentils",
+        "lentil curry",
+        "plain dal"
+      ]
+    },
+    {
+      "name": "coffee",
+      "unit": "1 cup (milk + sugar)",
+      "calories": 100,
+      "protein_g": 2,
+      "carbs_g": 10,
+      "fat_g": 3.5,
+      "fiber_g": 0,
+      "aliases": [
+        "filter coffee",
+        "milk coffee",
+        "indian coffee"
+      ]
+    },
+    {
+      "name": "laddu",
+      "unit": "1 piece",
+      "calories": 180,
+      "protein_g": 3,
+      "carbs_g": 25,
+      "fat_g": 8,
+      "fiber_g": 1,
+      "aliases": [
+        "ladoo"
+      ]
+    },
+    {
+      "name": "halwa",
+      "unit": "100g",
+      "calories": 300,
+      "protein_g": 3,
+      "carbs_g": 40,
+      "fat_g": 14,
+      "fiber_g": 1,
+      "aliases": []
+    },
+    {
+      "name": "omelette",
+      "unit": "1 egg",
+      "calories": 95,
+      "protein_g": 6,
+      "carbs_g": 1,
+      "fat_g": 7,
+      "fiber_g": 0,
+      "aliases": [
+        "plain omelette",
+        "egg omelette",
+        "omlette"
+      ]
+    },
+    {
+      "name": "sprouts salad",
+      "unit": "1 bowl",
+      "calories": 100,
+      "protein_g": 7,
+      "carbs_g": 12,
+      "fat_g": 2,
+      "fiber_g": 4,
+      "aliases": [
+        "sprout salad",
+        "moong sprouts"
+      ]
+    },
+    {
+      "name": "boiled moong dal",
+      "unit": "1 cup",
+      "calories": 120,
+      "protein_g": 9,
+      "carbs_g": 20,
+      "fat_g": 0.5,
+      "fiber_g": 7,
+      "aliases": [
+        "plain moong dal",
+        "steamed moong dal"
+      ]
+    },
+    {
+      "name": "oats upma",
+      "unit": "1 cup",
+      "calories": 150,
+      "protein_g": 5,
+      "carbs_g": 25,
+      "fat_g": 4,
+      "fiber_g": 4,
+      "aliases": [
+        "oat upma"
+      ]
+    },
+    {
+      "name": "vegetable soup",
+      "unit": "1 bowl",
+      "calories": 80,
+      "protein_g": 2,
+      "carbs_g": 10,
+      "fat_g": 2,
+      "fiber_g": 2,
+      "aliases": [
+        "veg soup",
+        "mixed vegetable soup"
+      ]
+    },
+    {
+      "name": "grilled paneer",
+      "unit": "100g",
+      "calories": 200,
+      "protein_g": 16,
+      "carbs_g": 5,
+      "fat_g": 14,
+      "fiber_g": 0,
+      "aliases": []
+    },
+    {
+      "name": "Chole Bhature",
+      "unit": "1 plate (2 bhature + 1 cup chole)",
+      "calories": 750.0,
+      "protein_g": 18.0,
+      "carbs_g": 90.0,
+      "fat_g": 35.0,
+      "fiber_g": 10.0,
+      "aliases": [
+        "Chhole Bhature",
+        "Chana Bhatura",
+        "Choley Bhature",
+        "Chole Bhatura",
+        "chole bhature"
+      ],
+      "ai_estimated": true
+    },
+    {
+      "name": "Dates (dried, Medjool)",
+      "unit": "2 pieces (~48 g, pitted)",
+      "calories": 135.0,
+      "protein_g": 0.9,
+      "carbs_g": 36.0,
+      "fat_g": 0.1,
+      "fiber_g": 3.2,
+      "aliases": [
+        "dates",
+        "Khajoor",
+        "Khajur",
+        "Medjool dates",
+        "Pind Khajur"
+      ],
+      "ai_estimated": true
+    },
+    {
+      "name": "Poori Kurma with Medu Vada",
+      "unit": "2 pooris + ~¾ cup vegetable kurma + 1 medu vada",
+      "calories": 560.0,
+      "protein_g": 13.0,
+      "carbs_g": 60.0,
+      "fat_g": 30.0,
+      "fiber_g": 6.0,
+      "aliases": [
+        "Puri Korma & Vada",
+        "Poori Saagu with Vadai",
+        "Puri Kurma Vada",
+        "Poori Kurma with Vada",
+        "puri and kurma and 1 vada"
+      ],
+      "ai_estimated": true
+    }
+  ]
+}

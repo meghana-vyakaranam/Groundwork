@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Strava sync · Groundwork{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-title">Connect your Strava account</div>
+  <p style="font-size:13px; color:var(--ink-secondary);">
+    {% if status.connected %}
+      Connected. Last synced activity: {{ status.last_sync or "not synced yet" }}.
+      Groundwork also auto-syncs your last 30 days in the background at most once every 24h,
+      whenever you have the app open — no need to click Sync now every day.
+    {% elif status.api_configured %}
+      Not connected yet.
+    {% else %}
+      Not set up yet — add <code>STRAVA_CLIENT_ID</code> and <code>STRAVA_CLIENT_SECRET</code>
+      to your <code>.env</code> file (see README) to enable this.
+    {% endif %}
+  </p>
+  <p style="margin-top:12px;">
+    {% if status.connected %}
+      <a href="{{ url_for('strava_preview', source='api') }}" class="btn-primary" style="display:inline-block; width:auto; padding:10px 20px;">Sync now (last 30 days)</a>
+    {% elif status.api_configured %}
+      <a href="{{ url_for('strava_connect') }}" class="btn-primary" style="display:inline-block; width:auto; padding:10px 20px;">Connect Strava account</a>
+    {% endif %}
+  </p>
+</div>
+
+<div class="card" style="margin-top:16px;">
+  <div class="card-title">Or upload your Strava data export</div>
+  <p style="font-size:13px; color:var(--ink-secondary);">
+    From Strava: Settings &rarr; My Account &rarr; Download or Delete Your Account &rarr;
+    Request your Archive. You'll get an email with a zip file — unzip it and upload the
+    <code>activities.csv</code> file from inside. Good for backfilling your full history;
+    re-uploading and re-confirming later is always safe, nothing is duplicated.
+  </p>
+  <form method="POST" action="{{ url_for('strava_upload') }}" enctype="multipart/form-data" style="margin-top:12px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+    <input type="file" name="export_file" accept=".csv" required>
+    <button type="submit" class="btn-primary" style="width:auto; padding:10px 20px;">Upload &amp; preview</button>
+  </form>
+  {% if status.csv_available %}
+  <p style="margin-top:10px;"><a href="{{ url_for('strava_preview', source='csv') }}" class="edit-link">Preview last uploaded file again</a></p>
+  {% endif %}
+</div>
+
+<p style="margin-top:16px;"><a href="{{ url_for('dashboard') }}" class="edit-link">Back to dashboard</a></p>
+{% endblock %}

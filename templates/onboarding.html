@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% block title %}Set up your profile · Groundwork{% endblock %}
+{% block content %}
+<div id="onboarding-card">
+  <h1>Set up your profile</h1>
+  <p class="subtitle">Shown once — you can edit this anytime from settings.</p>
+
+  <form method="POST" action="{{ url_for('onboarding') }}">
+    <div class="field-grid">
+      <div>
+        <label class="field-label">Weight (kg)</label>
+        <input type="number" step="0.1" id="weight-input" name="weight_kg" value="{{ defaults.weight_kg }}" oninput="updateGoalPreviews()" required>
+      </div>
+      <div>
+        <label class="field-label">Height (cm)</label>
+        <input type="number" step="0.1" id="height-input" name="height_cm" value="{{ defaults.height_cm }}" oninput="updateGoalPreviews()" required>
+      </div>
+      <div>
+        <label class="field-label">Age</label>
+        <input type="number" id="age-input" name="age" value="{{ defaults.age }}" oninput="updateGoalPreviews()" required>
+      </div>
+      <div>
+        <label class="field-label">Sex</label>
+        <select id="sex-input" name="sex" onchange="updateGoalPreviews()" style="width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:var(--surface-tint); font-family:var(--font-body); font-size:14px; color:var(--ink);">
+          <option value="female" {% if defaults.sex == 'female' %}selected{% endif %}>Female</option>
+          <option value="male" {% if defaults.sex == 'male' %}selected{% endif %}>Male</option>
+        </select>
+      </div>
+    </div>
+
+    <p class="goal-label">Choose your goal</p>
+    <input type="hidden" id="goal-input" name="goal" value="{{ defaults.goal }}">
+
+    <div class="goal-card {% if defaults.goal == 'maintain' %}selected{% endif %}" onclick="selectGoal(this, 'maintain')">
+      <div class="title">Maintain</div>
+      <div class="desc">Match intake to what you burn</div>
+      <div class="goal-preview" id="preview-maintain"></div>
+    </div>
+    <div class="goal-card {% if defaults.goal == 'bulk' %}selected{% endif %}" onclick="selectGoal(this, 'bulk')">
+      <div class="title">Bulk</div>
+      <div class="desc">Deliberate surplus, higher protein</div>
+      <div class="goal-preview" id="preview-bulk"></div>
+    </div>
+    <div class="goal-card {% if defaults.goal == 'performance' %}selected{% endif %}" onclick="selectGoal(this, 'performance')">
+      <div class="title">Performance</div>
+      <div class="desc">Never under-fuel on training days</div>
+      <div class="goal-preview" id="preview-performance"></div>
+    </div>
+
+    <button type="submit" class="btn-primary">Save and continue</button>
+  </form>
+
+  <hr style="border:none; border-top:1px solid var(--border); margin:28px 0;">
+
+  <p class="goal-label" style="margin-bottom:2px;">Connect your activity data</p>
+  <p style="font-size:12px; color:var(--ink-muted); margin:0 0 16px;">
+    Optional, and not required to continue — but the sooner this is connected, the sooner
+    "today's target" accounts for what you actually burn instead of just your BMR.
+  </p>
+
+  <div style="border:1.5px solid var(--border); border-radius:14px; padding:14px 16px; margin-bottom:10px;">
+    <div style="font-weight:600; font-size:14px; margin-bottom:4px;">Connect your Strava account</div>
+    <p style="font-size:12px; color:var(--ink-secondary); margin:0 0 10px;">
+      {% if strava_status.connected %}
+        Connected. Last synced activity: {{ strava_status.last_sync or "not synced yet" }}.
+        Auto-syncs in the background at most once every 24h from here on.
+      {% elif strava_status.api_configured %}
+        Not connected yet.
+      {% else %}
+        Not set up yet — add <code>STRAVA_CLIENT_ID</code> and <code>STRAVA_CLIENT_SECRET</code>
+        to your <code>.env</code> file (see README) to enable this.
+      {% endif %}
+    </p>
+    {% if strava_status.connected %}
+      <a href="{{ url_for('strava_preview', source='api') }}" class="edit-link">Sync now (last 30 days)</a>
+    {% elif strava_status.api_configured %}
+      <a href="{{ url_for('strava_connect') }}" class="btn-primary" style="display:inline-block; width:auto; padding:9px 18px; margin-top:0;">Connect Strava account</a>
+    {% endif %}
+  </div>
+
+  <div style="border:1.5px solid var(--border); border-radius:14px; padding:14px 16px;">
+    <div style="font-weight:600; font-size:14px; margin-bottom:4px;">Or upload your Strava data export</div>
+    <p style="font-size:12px; color:var(--ink-secondary); margin:0 0 10px;">
+      From Strava: Settings &rarr; My Account &rarr; Download or Delete Your Account &rarr;
+      Request your Archive, then upload the <code>activities.csv</code> from inside the zip.
+      Good for backfilling your full history.
+    </p>
+    <form method="POST" action="{{ url_for('strava_upload') }}" enctype="multipart/form-data" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+      <input type="file" name="export_file" accept=".csv" required style="font-size:12px;">
+      <button type="submit" class="btn-primary" style="display:inline-block; width:auto; padding:9px 18px; margin-top:0;">Upload &amp; preview</button>
+    </form>
+    {% if strava_status.csv_available %}
+    <p style="margin-top:8px;"><a href="{{ url_for('strava_preview', source='csv') }}" class="edit-link">Preview last uploaded file again</a></p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const BULK_SURPLUS = 400;
+
+  function selectGoal(el, goalValue) {
+    document.querySelectorAll('.goal-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('goal-input').value = goalValue;
+  }
+
+  function updateGoalPreviews() {
+    const w = parseFloat(document.getElementById('weight-input').value) || 0;
+    const h = parseFloat(document.getElementById('height-input').value) || 0;
+    const a = parseFloat(document.getElementById('age-input').value) || 0;
+    const sex = document.getElementById('sex-input').value;
+    let bmr = (10 * w) + (6.25 * h) - (5 * a);
+    bmr += (sex === 'male') ? 5 : -161;
+    bmr = Math.round(bmr);
+    document.getElementById('preview-maintain').textContent = `~${bmr.toLocaleString()} cal today, based on your stats`;
+    document.getElementById('preview-bulk').textContent = `~${(bmr + BULK_SURPLUS).toLocaleString()} cal today (+${BULK_SURPLUS} surplus)`;
+    document.getElementById('preview-performance').textContent = `~${bmr.toLocaleString()} cal today, adjusts with training`;
+  }
+  updateGoalPreviews();
+</script>
+{% endblock %}

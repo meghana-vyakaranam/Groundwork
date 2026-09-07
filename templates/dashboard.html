@@ -1,0 +1,461 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · Groundwork{% endblock %}
+{% block content %}
+<div id="dashboard">
+  <div class="dash-header">
+    <span style="font-size:13px; color:var(--ink-muted);">Today · {{ today.strftime('%A') }}</span>
+    <a class="edit-link" href="{{ url_for('onboarding') }}">Edit profile</a>
+  </div>
+
+  <div class="card" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; padding:12px 18px;">
+    <span style="font-size:13px; color:var(--ink-secondary);">
+      {% if strava_status.connected or strava_status.csv_available %}
+        Strava: last synced activity {{ strava_status.last_sync or "not synced yet" }}.
+      {% else %}
+        No Strava data yet — connect your account or upload your export.
+      {% endif %}
+    </span>
+    <a class="edit-link" href="{{ url_for('strava_status_page') }}">Sync now</a>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title">Today's activity</div>
+    {% if todays_activity_rows %}
+    <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:14px;">
+      <span style="font-size:28px; font-weight:700; font-family:var(--font-display);">{{ '{:,}'.format(todays_activity_cal) }}</span>
+      <span style="font-size:13px; color:var(--ink-secondary);">cal burned today · {{ todays_activity_rows | length }} activit{{ 'y' if todays_activity_rows | length == 1 else 'ies' }}</span>
+    </div>
+    <div class="session-list">
+      {% for row in todays_activity_rows %}
+      <div class="session-row">
+        <div class="session-left">
+          <div class="session-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{{ row.icon | safe }}</svg></div>
+          <div>
+            <div class="session-name">{{ row.name }}</div>
+            <div class="session-detail">
+              {{ row.type }}{% if row.duration_min %} · {{ row.duration_min }} min{% endif %}{% if row.distance_km %} · {{ row.distance_km }} km{% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="session-delta" style="color:var(--ink-muted);">{{ row.calories }} cal</div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p style="font-size:13px; color:var(--ink-secondary);">
+      Nothing synced for today yet.
+      {% if strava_status.connected %}
+        It'll show up here automatically (auto-syncs at most once every 24h), or
+        <a href="{{ url_for('strava_status_page') }}" class="edit-link">sync now</a>.
+      {% elif strava_status.api_configured %}
+        <a href="{{ url_for('strava_status_page') }}" class="edit-link">Connect your Strava account</a>
+        to pull today's activity in automatically.
+      {% else %}
+        <a href="{{ url_for('strava_status_page') }}" class="edit-link">Set up Strava sync</a>
+        to pull today's activity in automatically.
+      {% endif %}
+    </p>
+    {% endif %}
+  </div>
+
+  <div class="tiles">
+    <div class="tile">
+      <div class="tile-icon" style="background:var(--forest-tint);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM6 20l3-6 2 2 3-7"/><path d="M4 9l3-2 3 2 4-4 4 2"/></svg></div>
+      <div>
+        <div class="tile-label">This week</div>
+        <div class="tile-value">{{ summary.session_count }} session{{ 's' if summary.session_count != 1 else '' }}</div>
+        <div class="tile-sub">{{ summary.types | join(', ') if summary.types else 'Nothing synced yet' }}</div>
+      </div>
+    </div>
+    <div class="tile">
+      <div class="tile-icon" style="background:var(--rose-tint);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--rose)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 17a2.5 2.5 0 0 0 2.5-2.5c0-1.5-1.5-2-1.5-4 2 0 3.5 2.5 3.5 4.5A5.5 5.5 0 0 1 10 20a5.5 5.5 0 0 1-5-5.5C5 10 8 8 8 4c3 1 5 4 5 7"/></svg></div>
+      <div>
+        <div class="tile-label">Calories burned</div>
+        <div class="tile-value">{{ '{:,}'.format(summary.total_calories) }}</div>
+        <div class="tile-sub">~{{ summary.avg_per_day }}/day avg</div>
+      </div>
+    </div>
+    <div class="tile">
+      <div class="tile-icon" style="background:var(--amber-tint);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.5" fill="var(--amber)"/></svg></div>
+      <div>
+        <div class="tile-label">Today's target</div>
+        <div class="tile-value">{{ '{:,}'.format(target.target_calories) }} cal</div>
+        <div class="tile-sub">{{ '{:,}'.format(logged_totals.calories) }} logged · {{ '{:,}'.format(remaining) if remaining >= 0 else '0' }} to go</div>
+        <div class="target-info-toggle" onclick="toggleBreakdown(this)">why this number?</div>
+        <div class="target-breakdown">{{ target.breakdown_text }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px;">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:10px;">
+      <span class="card-title" style="margin-bottom:0;">Daily calorie goal</span>
+      <span style="font-size:13px; color:var(--ink-secondary);">{{ '{:,}'.format(logged_totals.calories) }} / {{ '{:,}'.format(target.target_calories) }} kcal</span>
+    </div>
+    <div class="macro-track" style="height:10px;">
+      <div class="macro-fill" style="width:{{ calorie_goal_pct }}%; background:var(--forest);"></div>
+    </div>
+    <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--ink-muted); margin-top:6px;">
+      <span>0</span>
+      <span>{{ '{:,}'.format(remaining) if remaining >= 0 else '0' }} kcal remaining</span>
+    </div>
+  </div>
+
+  <div class="toggle-tile-row">
+    <div class="toggle-tile expanded" id="tile-training" onclick="toggleSection('training')">
+      <div class="toggle-tile-left">
+        <div class="toggle-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></div>
+        <div><div class="toggle-tile-title">Training</div><div class="toggle-tile-sub">{{ recommendation.title }}</div></div>
+      </div>
+      <svg class="toggle-tile-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <div class="toggle-tile" id="tile-food" onclick="toggleSection('food')">
+      <div class="toggle-tile-left">
+        <div class="toggle-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c0-6 3-9 3-14a3 3 0 0 0-6 0c0 5 3 8 3 14z"/></svg></div>
+        <div><div class="toggle-tile-title">Food &amp; water</div><div class="toggle-tile-sub">{{ food_preview }}</div></div>
+      </div>
+      <svg class="toggle-tile-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+  </div>
+
+  <div class="section-content expanded" id="content-training">
+  <div class="card">
+    <div class="train-box {{ train_box_class }}">
+      <div class="train-title">{{ recommendation.title }}</div>
+      <div class="train-body">{{ recommendation.message }}</div>
+    </div>
+
+    <div class="train-grid" style="margin-top:18px;">
+      <div>
+        <div class="train-week-label">Load trend, last 7 days</div>
+        <div class="train-trend" style="height:56px;">
+          {% for row in load_trend %}
+          <div class="bar-col">
+            <div class="bar" style="height:{{ row.bar_height }}px; background:{% if loop.last %}var(--amber){% else %}var(--ink-muted){% endif %};"></div>
+            <div class="bar-day">{{ row.day_label }}</div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="train-tip">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16" r="0.5" fill="var(--ink-muted)"/></svg>
+          <span>{{ recommendation.tip }}</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="train-week-label">This week, by activity</div>
+        {% if breakdown %}
+        <div class="session-list">
+          {% for row in breakdown %}
+          <div class="session-row">
+            <div class="session-left">
+              <div class="session-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{{ row.icon | safe }}</svg></div>
+              <div><div class="session-name">{{ row.type }} · {{ row.sessions }} session{{ 's' if row.sessions != 1 else '' }}</div><div class="session-detail">{{ row.detail }}</div></div>
+            </div>
+            {% if row.delta_class == 'neutral' %}
+            <div class="session-delta" style="color:var(--ink-muted);">{{ row.delta_text }}</div>
+            {% else %}
+            <div class="session-delta {{ row.delta_class }}">{{ row.delta_text }}</div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p style="font-size:13px; color:var(--ink-muted);">No activity synced this week yet.</p>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if training_insights %}
+    <div class="train-week-label" style="margin-top:20px;">Training insights</div>
+    <div class="insight-grid">
+      {% for insight in training_insights %}
+      <div class="insight-card {{ insight.tone }}">
+        <span class="insight-icon">{{ insight.icon }}</span>
+        <div class="insight-title">{{ insight.title }}</div>
+        <div class="insight-message">{{ insight.message }}</div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  </div>
+
+  <div class="section-content" id="content-food">
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Today's macros</div>
+      {% for row in macro_rows %}
+      <div class="macro-row">
+        <div class="macro-top"><span>{{ row.label }}</span><span class="{{ row.status_class }}">{{ row.logged }}g / {{ row.target }}g · {{ row.status_label }}</span></div>
+        <div class="macro-track"><div class="macro-fill" style="width:{{ row.pct }}%; background:{{ row.fill_color }};"></div></div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="card water-card-wrap">
+      <div class="card-title">Water</div>
+      <div class="water-count" id="water-count">{{ '{:,}'.format(water.logged_ml) }} ml</div>
+      <div class="water-sub" id="water-sub">of {{ '{:,}'.format(water.target_ml) }} ml target ({{ water.glasses }} of {{ water.target_glasses }} glasses) · based on your weight</div>
+      <div class="water-track"><div class="water-fill" id="water-fill" style="width:{{ water.pct }}%;"></div></div>
+      <div class="water-actions" style="margin-top:14px;">
+        <button class="btn-water" type="button" onclick="addWater(250)">+1 glass</button>
+        <button class="btn-water" type="button" onclick="addWater(500)">+500 ml</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="meal-grid">
+    {% for section in meal_sections %}
+    <div class="meal-panel-card">
+      <div class="meal-top"><span class="meal-title">{{ section.label }}</span></div>
+
+      <form class="smart-entry" method="POST" action="{{ url_for('log_meal_smart') }}">
+        <input type="hidden" name="meal_type" value="{{ section.key }}">
+        <input type="text" name="text" placeholder="what did you have?">
+        <button class="btn-add" type="submit">+</button>
+      </form>
+
+      {% if section.entries %}
+      <div class="chip-row">
+        {% for item in section.entries %}
+          {% if item.calories is not none %}
+          <button type="button" class="chip ok" onclick="toggleEditItem('item-{{ item.id }}')">{{ item.display_name }}{% if item.qty_display %} x{{ item.qty_display }}{% endif %} · {{ item.calories | round(0) | int }} cal</button>
+          {% else %}
+          <button type="button" class="chip miss" onclick="toggleEditItem('item-{{ item.id }}')">{{ item.display_name }} · couldn't estimate</button>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% for item in section.entries %}
+      <div class="manual-panel edit-item-panel" id="item-{{ item.id }}">
+        <div class="manual-item">
+          <div style="font-size:12px; font-weight:600; margin-bottom:8px;">{{ item.display_name }}</div>
+          <form method="POST" action="{{ url_for('log_meal_update', meal_id=item.id) }}">
+            <div class="manual-grid5">
+              <div><label>Qty</label><input name="quantity" value="{{ item.quantity if item.quantity is not none else '' }}"></div>
+              <div><label>Cal</label><input name="calories" value="{{ item.calories if item.calories is not none else '' }}"></div>
+              <div><label>Protein</label><input name="protein_g" value="{{ item.protein_g if item.protein_g is not none else '' }}"></div>
+              <div><label>Carbs</label><input name="carbs_g" value="{{ item.carbs_g if item.carbs_g is not none else '' }}"></div>
+              <div><label>Fat</label><input name="fat_g" value="{{ item.fat_g if item.fat_g is not none else '' }}"></div>
+            </div>
+            <div style="display:flex; gap:8px; margin-top:8px;">
+              <button class="btn-add" type="submit" style="flex:1;">Save</button>
+            </div>
+          </form>
+          <form method="POST" action="{{ url_for('log_meal_delete', meal_id=item.id) }}" onsubmit="return confirm('Remove this item?');">
+            <button class="btn-ghost" type="submit" style="width:100%; margin-top:6px; color:var(--amber);">Delete</button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class="totals-line">Nothing logged yet</div>
+      {% endif %}
+
+      <button class="btn-ghost" type="button" style="width:100%; margin-top:8px;" onclick="toggleManual(this)">Enter calories myself</button>
+      <div class="manual-panel">
+        <form method="POST" action="{{ url_for('log_meal_manual') }}">
+          <input type="hidden" name="meal_type" value="{{ section.key }}">
+          <input type="hidden" class="row-count-input" name="row_count" value="1">
+          <div class="manual-item" data-index="0">
+            <input class="label-input" name="label_0" placeholder="Label (optional)">
+            <div class="manual-grid5">
+              <div><label>Qty</label><input name="qty_0" placeholder="1"></div>
+              <div><label>Cal</label><input name="cal_0" placeholder="cal"></div>
+              <div><label>Protein</label><input name="protein_0" placeholder="g"></div>
+              <div><label>Carbs</label><input name="carbs_0" placeholder="g"></div>
+              <div><label>Fat</label><input name="fat_0" placeholder="g"></div>
+            </div>
+          </div>
+          <button class="btn-add-row" type="button" onclick="addRow(this)">+ Add item</button>
+          <button class="btn-add" type="submit" style="margin-top:8px;">Save</button>
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+
+    <div class="meal-panel-card add-panel-slot">
+      <button class="meal-panel-card add-panel" type="button" onclick="addCustomMeal()" style="width:100%; border:1.5px dashed var(--border); margin:0;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--ink-secondary)" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        <span>Add meal</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title">Daily check-in</div>
+    {% if today_summary %}
+    <div class="train-box {{ 'good' if today_summary.status == 'good' else 'ease' }}">
+      <div class="train-title">{{ today_summary.title }}</div>
+      <div class="train-body">{{ today_summary.message }}</div>
+    </div>
+    <p style="font-size:12px; color:var(--ink-muted); margin-top:8px;">
+      Last submitted {{ today_summary.submitted_at[:16].replace('T', ' at ') }} — logging more food or water and
+      resubmitting will refresh this.
+    </p>
+    {% else %}
+    <p style="font-size:13px; color:var(--ink-secondary);">
+      Log today's meals and water above, then submit to get a recommendation based on how much
+      you've eaten and drunk so far today.
+    </p>
+    {% endif %}
+    <form method="POST" action="{{ url_for('submit_day') }}" style="margin-top:12px;">
+      <button class="btn-primary" type="submit" style="width:auto; padding:10px 20px;">
+        {{ "Update today's check-in" if today_summary else "Submit today's log" }}
+      </button>
+    </form>
+    <p style="margin-top:10px;"><a href="{{ url_for('history') }}" class="edit-link">View history</a></p>
+  </div>
+
+  {% if nutrition_insights %}
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title">Nutrition recommendations</div>
+    <div class="insight-grid">
+      {% for insight in nutrition_insights %}
+      <div class="insight-card {{ insight.tone }}">
+        <span class="insight-icon">{{ insight.icon }}</span>
+        <div class="insight-title">{{ insight.title }}</div>
+        <div class="insight-message">{{ insight.message }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Accordion: opening one section (training/food) closes the other, so
+  // only one is ever shown at a time. Clicking the already-open section
+  // collapses it (both can be closed, but never both open together).
+  function toggleSection(name) {
+    const other = name === 'training' ? 'food' : 'training';
+    const tile = document.getElementById('tile-' + name);
+    const content = document.getElementById('content-' + name);
+    const otherTile = document.getElementById('tile-' + other);
+    const otherContent = document.getElementById('content-' + other);
+    const willExpand = !tile.classList.contains('expanded');
+
+    tile.classList.toggle('expanded', willExpand);
+    content.classList.toggle('expanded', willExpand);
+    otherTile.classList.remove('expanded');
+    otherContent.classList.remove('expanded');
+
+    localStorage.setItem('groundwork-open-section', willExpand ? name : '');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('groundwork-open-section');
+    if (saved === null) return; // no preference saved yet — keep the server-rendered default
+    ['training', 'food'].forEach(name => {
+      const tile = document.getElementById('tile-' + name);
+      const content = document.getElementById('content-' + name);
+      const shouldExpand = saved === name;
+      tile.classList.toggle('expanded', shouldExpand);
+      content.classList.toggle('expanded', shouldExpand);
+    });
+  });
+
+  function toggleManual(btn) {
+    const panel = btn.closest('.meal-panel-card').querySelector('.manual-panel:not(.edit-item-panel)');
+    panel.classList.toggle('open');
+  }
+
+  function toggleEditItem(id) {
+    document.getElementById(id).classList.toggle('open');
+  }
+
+  function addRow(btn) {
+    const form = btn.closest('form');
+    const rowCountInput = form.querySelector('.row-count-input');
+    const items = form.querySelectorAll('.manual-item');
+    const template = items[items.length - 1];
+    const newItem = template.cloneNode(true);
+    const newIndex = parseInt(rowCountInput.value, 10);
+    newItem.dataset.index = newIndex;
+    newItem.querySelectorAll('input').forEach(input => {
+      const baseName = input.name.replace(/_\d+$/, '');
+      input.name = baseName + '_' + newIndex;
+      input.value = '';
+    });
+    form.insertBefore(newItem, btn);
+    rowCountInput.value = newIndex + 1;
+  }
+
+  function toggleBreakdown(el) {
+    el.nextElementSibling.classList.toggle('open');
+  }
+
+  let waterMl = {{ water.logged_ml }};
+  const waterTargetMl = {{ water.target_ml }};
+  function renderWater() {
+    const pct = Math.min(100, Math.round((waterMl / waterTargetMl) * 100));
+    const glasses = Math.round(waterMl / 250);
+    const targetGlasses = Math.round(waterTargetMl / 250);
+    document.getElementById('water-count').textContent = `${waterMl.toLocaleString()} ml`;
+    document.getElementById('water-sub').textContent = `of ${waterTargetMl.toLocaleString()} ml target (${glasses} of ${targetGlasses} glasses) · based on your weight`;
+    document.getElementById('water-fill').style.width = pct + '%';
+  }
+  function addWater(amount) {
+    waterMl += amount;
+    renderWater();
+    fetch("{{ url_for('log_water') }}", {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: 'amount_ml=' + amount,
+    })
+      .then(r => r.json())
+      .then(data => { waterMl = data.total_ml; renderWater(); })
+      .catch(() => {});
+  }
+
+  let customMealCount = 0;
+  function addCustomMeal() {
+    customMealCount++;
+    const slot = document.querySelector('.add-panel-slot');
+    const card = document.createElement('div');
+    card.className = 'meal-panel-card';
+    card.innerHTML = `
+      <div class="meal-top">
+        <input type="text" class="custom-meal-name" placeholder="Name this meal" style="font-size:15px; font-weight:600; font-family:var(--font-display); border:none; background:none; padding:0; width:100%;">
+      </div>
+      <form class="smart-entry custom-smart-form" method="POST" action="{{ url_for('log_meal_smart') }}">
+        <input type="hidden" name="meal_type" class="meal-type-hidden" value="Custom meal">
+        <input type="text" name="text" placeholder="what did you have?">
+        <button class="btn-add" type="submit">+</button>
+      </form>
+      <div class="totals-line">Nothing logged yet</div>
+      <button class="btn-ghost" type="button" style="width:100%; margin-top:8px;" onclick="toggleManual(this)">Enter calories myself</button>
+      <div class="manual-panel">
+        <form method="POST" action="{{ url_for('log_meal_manual') }}" class="custom-manual-form">
+          <input type="hidden" name="meal_type" class="meal-type-hidden" value="Custom meal">
+          <input type="hidden" class="row-count-input" name="row_count" value="1">
+          <div class="manual-item" data-index="0">
+            <input class="label-input" name="label_0" placeholder="Label (optional)">
+            <div class="manual-grid5">
+              <div><label>Qty</label><input name="qty_0" placeholder="1"></div>
+              <div><label>Cal</label><input name="cal_0" placeholder="cal"></div>
+              <div><label>Protein</label><input name="protein_0" placeholder="g"></div>
+              <div><label>Carbs</label><input name="carbs_0" placeholder="g"></div>
+              <div><label>Fat</label><input name="fat_0" placeholder="g"></div>
+            </div>
+          </div>
+          <button class="btn-add-row" type="button" onclick="addRow(this)">+ Add item</button>
+          <button class="btn-add" type="submit" style="margin-top:8px;">Save</button>
+        </form>
+      </div>`;
+    slot.parentNode.insertBefore(card, slot);
+
+    const nameInput = card.querySelector('.custom-meal-name');
+    card.querySelectorAll('form').forEach(form => {
+      form.addEventListener('submit', () => {
+        const name = nameInput.value.trim() || 'Custom meal';
+        form.querySelector('.meal-type-hidden').value = name;
+      });
+    });
+  }
+</script>
+{% endblock %}
