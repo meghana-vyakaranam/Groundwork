@@ -55,21 +55,28 @@ internet, but isn't required.
 ## Deploying to Render
 
 The app is ready to deploy as-is — it's already set up to run under a real
-WSGI server, keep its data on a persistent disk, and generate correct HTTPS
-URLs behind Render's proxy. What changes between local and Render is where
-config comes from: locally it's `.env`; on Render it's environment
-variables you set in the dashboard (`.env` itself is gitignored and never
-deployed).
+WSGI server and generate correct HTTPS URLs behind Render's proxy. What
+changes between local and Render is where config comes from: locally it's
+`.env`; on Render it's environment variables you set in the dashboard
+(`.env` itself is gitignored and never deployed).
+
+`render.yaml` is configured for Render's **free** plan, with no persistent
+disk — nothing to pay for. The trade-off: `groundwork.db`,
+`data/strava_export.csv`, and `data/food_db.json` live on the service's
+ephemeral filesystem, so logged meals/weights/AI-learned foods can reset
+whenever the free service restarts or redeploys. If you want that data to
+actually persist, upgrade the `plan` in `render.yaml` to `starter` (or
+higher) and add a `disk:` block mounted at, say, `/var/data`, with
+`DATABASE_PATH`/`DATA_DIR` env vars pointing into it — this is a paid
+feature (disks aren't available on the free plan).
 
 1. **Push this repo to GitHub** (or GitLab), since Render deploys from a git
    remote.
 2. **In the Render dashboard**, choose "New → Blueprint" and point it at the
-   repo — it will read `render.yaml` and provision the web service plus a
-   1GB persistent disk automatically (mounted at `/var/data`, holding
-   `groundwork.db`, `data/strava_export.csv`, and `data/food_db.json`, so
-   none of it resets on redeploy). Alternatively, "New → Web Service" and
-   set the build/start commands manually from `render.yaml` if you'd rather
-   not use the Blueprint flow.
+   repo — it will read `render.yaml` and provision the web service
+   automatically. Alternatively, "New → Web Service" and set the
+   build/start commands manually from `render.yaml` if you'd rather not use
+   the Blueprint flow.
 3. **Set the secret env vars** Render will prompt for (declared but left
    blank in `render.yaml`):
    - `STRAVA_CLIENT_ID` / `STRAVA_CLIENT_SECRET` — same values as `.env`
@@ -85,11 +92,11 @@ deployed).
    against the OAuth redirect, so the old `localhost` value won't work once
    you're connecting from the deployed URL. You can list multiple domains
    there if you still want `localhost` to keep working too.
-5. Deploy. First boot seeds `data/food_db.json` on the persistent disk from
-   the curated list checked into this repo, then behaves exactly like the
-   local app from there — including the 24h Strava auto-sync, which now
-   actually runs "daily" in the literal sense, since a hosted app (unlike
-   your laptop) is up all the time.
+5. Deploy. `data/food_db.json` starts out as the curated list checked into
+   this repo, then behaves exactly like the local app from there —
+   including the 24h Strava auto-sync, which now actually runs "daily" in
+   the literal sense, since a hosted app (unlike your laptop) is up all the
+   time (as long as it isn't asleep — see the free-tier note below).
 
 Notes:
 - **Free-tier Render web services spin down after inactivity** and take

@@ -2,22 +2,16 @@ services:
   - type: web
     name: groundwork
     runtime: python
-    plan: starter
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app --workers 1 --threads 4 --timeout 60
-    # SQLite + the food/Strava data files all need to survive deploys and
-    # restarts, which Render's default filesystem does not guarantee — this
-    # disk is mounted at /var/data and DATABASE_PATH/DATA_DIR below point
-    # into it. Without this disk, every deploy silently resets the app.
-    disk:
-      name: groundwork-data
-      mountPath: /var/data
-      sizeGB: 1
+    # Free plan has no persistent disk, so DATABASE_PATH/DATA_DIR are left
+    # unset and the app falls back to ./groundwork.db and ./data/ on the
+    # service's ephemeral filesystem — meaning logged meals, weights, and
+    # AI-learned foods can reset on restarts/redeploys. Fine for trying the
+    # app out for free; upgrade to a paid plan + disk (see README) if you
+    # want that data to actually persist.
     envVars:
-      - key: DATABASE_PATH
-        value: /var/data/groundwork.db
-      - key: DATA_DIR
-        value: /var/data
       # Secrets — set actual values in the Render dashboard, not here.
       - key: STRAVA_CLIENT_ID
         sync: false
