@@ -1,19 +1,12 @@
 # Groundwork
 
-A local, mobile-and-desktop-friendly web app that answers one question every
-day: **"Given what I did today and my goal, am I eating the right amount?"**
+An app that answers **"Given my daily workouts and fitness goals, how do I maintain an optimised personal health?"**
 
 Set a goal once (Maintain / Bulk / Performance), sync activity data from
 Strava (connect your account or upload your data export), log meals in
 plain language (including Indian dishes), track water, and see at a glance
 whether today's intake is on target — plus a data-backed read on whether
 today is a day to train hard or ease off.
-
-No subscriptions required. Plain Python + Flask + SQLite. Runs locally by
-default, reachable from your phone or laptop over home WiFi only (not from
-outside the house — a deliberate simplicity/cost tradeoff) — or optionally
-[deployed to Render](#deploying-to-render) if you want a stable URL reachable
-from anywhere.
 
 ## Install
 
@@ -47,65 +40,6 @@ python app.py
   connect from another device, macOS may prompt you to allow incoming
   connections for Python — allow it.
 
-By default this app is home-WiFi-only. It is not reachable from outside
-your house unless you deploy it (see below) — the local-only setup avoids
-the cost and complexity of exposing a single-user app to the public
-internet, but isn't required.
-
-## Deploying to Render
-
-The app is ready to deploy as-is — it's already set up to run under a real
-WSGI server and generate correct HTTPS URLs behind Render's proxy. What
-changes between local and Render is where config comes from: locally it's
-`.env`; on Render it's environment variables you set in the dashboard
-(`.env` itself is gitignored and never deployed).
-
-`render.yaml` is configured for Render's **free** plan, with no persistent
-disk — nothing to pay for. The trade-off: `groundwork.db`,
-`data/strava_export.csv`, and `data/food_db.json` live on the service's
-ephemeral filesystem, so logged meals/weights/AI-learned foods can reset
-whenever the free service restarts or redeploys. If you want that data to
-actually persist, upgrade the `plan` in `render.yaml` to `starter` (or
-higher) and add a `disk:` block mounted at, say, `/var/data`, with
-`DATABASE_PATH`/`DATA_DIR` env vars pointing into it — this is a paid
-feature (disks aren't available on the free plan).
-
-1. **Push this repo to GitHub** (or GitLab), since Render deploys from a git
-   remote.
-2. **In the Render dashboard**, choose "New → Blueprint" and point it at the
-   repo — it will read `render.yaml` and provision the web service
-   automatically. Alternatively, "New → Web Service" and set the
-   build/start commands manually from `render.yaml` if you'd rather not use
-   the Blueprint flow.
-3. **Set the secret env vars** Render will prompt for (declared but left
-   blank in `render.yaml`):
-   - `STRAVA_CLIENT_ID` / `STRAVA_CLIENT_SECRET` — same values as `.env`
-   - `ANTHROPIC_API_KEY` — optional, same as `.env`
-   - `APP_USERNAME` / `APP_PASSWORD` — **set these.** Groundwork has no
-     login of its own; on home WiFi that's fine, but on a public Render URL
-     it means anyone with the link can see your food/weight logs and your
-     live Strava tokens. Setting `APP_PASSWORD` puts the whole app behind
-     an HTTP Basic Auth prompt.
-4. **Update your Strava API app's Authorization Callback Domain** at
-   [strava.com/settings/api](https://www.strava.com/settings/api) to your
-   Render domain (e.g. `groundwork.onrender.com`) — Strava checks this
-   against the OAuth redirect, so the old `localhost` value won't work once
-   you're connecting from the deployed URL. You can list multiple domains
-   there if you still want `localhost` to keep working too.
-5. Deploy. `data/food_db.json` starts out as the curated list checked into
-   this repo, then behaves exactly like the local app from there —
-   including the 24h Strava auto-sync, which now actually runs "daily" in
-   the literal sense, since a hosted app (unlike your laptop) is up all the
-   time (as long as it isn't asleep — see the free-tier note below).
-
-Notes:
-- **Free-tier Render web services spin down after inactivity** and take
-  ~30–60s to wake back up on the next request — fine for a personal daily
-  check-in app, just don't expect an instant load on the first visit of the
-  day.
-- The Procfile runs a single gunicorn worker on purpose: SQLite handles one
-  writer at a time, and this is a single-user app, so extra worker
-  processes would add nothing but lock-contention risk.
 
 ## Strava sync setup
 
@@ -150,14 +84,6 @@ activity named "Evening Tennis" is recognized as Tennis).
 
 ### Preview before import
 
-Syncing is never silent, for either option:
-
-- The **Sync now** flow always shows a preview table of everything found,
-  with each row flagged as **new** or **already imported** — nothing is
-  written to the database until you click **Confirm import**.
-- Re-running an import over already-synced data is safe: activities are
-  upserted by Strava's own permanent activity ID, so nothing is duplicated.
-
 ## Nutrition matching
 
 Meal logging first matches free text against a local, curated dataset
@@ -192,16 +118,6 @@ You can also extend the dataset by hand by adding entries directly to
 `unit`, `calories`, `protein_g`, `carbs_g`, `fat_g`, `fiber_g`, and an
 `aliases` list. Values are reasonable per-serving approximations, not
 lab-measured.
-
-## Design reference
-
-`design_a_sage_v2.html` (the original click-through mockup provided
-alongside the PRD) is the visual reference for colors, spacing, and
-component patterns — useful if you're iterating on `templates/` or
-`static/style.css` later. Two things were added beyond that mockup, since
-it didn't cover them: the Strava sync banner/preview table, and a
-"Save" button on manual meal entry (the mockup's manual-entry form was a
-non-interactive demo).
 
 ## Project structure
 
